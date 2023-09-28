@@ -16,7 +16,7 @@
 import random
 
 
-def is_valid(number):
+def is_valid(number: int) -> bool:
     """ Перевірка числа на унікальність. Усі 4 цифри числа мають бути різні """
     try:
         # Перекладаємо наше число до списку символів. Порівнюємо з безліччю (у безлічі немає символів, що повторюються)
@@ -28,16 +28,16 @@ def is_valid(number):
         return False
 
 
-def check(number_guess, number_computer):
+def check(number_guess: int, number_computer: int) -> list[int], list[int]:
     """ Знаходимо кількість корів і биків у числі """
 
     # індекси корів та биків
-    n_c, n_b = [], []
+    n_c: list[int], n_b: list[int] = [], []
 
     try:
         # переводимо наші числа до списку із символів
-        number_guess_list = list(str(number_guess))
-        number_computer_list = list(str(number_computer))
+        number_guess_list: list[str[int]] = list(str(number_guess))
+        number_computer_list: list[str[int]] = list(str(number_computer))
 
         # проходимося по числу
         for index in range(len(number_guess_list)):
@@ -54,11 +54,11 @@ def check(number_guess, number_computer):
         return n_c, n_b
 
 
-def game(number_guess, n_c, n_b):
+def game(number_guess: int, n_c: list[int], n_b: list[int]) -> int:
     """ Ф-я перескладання числа з наявних даних """
 
     # переводимо наше число до списку із символів
-    number_guess_list = list(str(number_guess))
+    number_guess_list: list[str[int]] = list(str(number_guess))
 
     # проходимося за списком number_guess_list
     for index in range(len(number_guess_list)):
@@ -78,12 +78,12 @@ def game(number_guess, n_c, n_b):
 
 
 # змінні
-number_guess = 0  # загадане число
-number_computer = 0  # число, яке потрібно відгадати
-n = 0  # кіл-ть спроб
+number_guess: int = 0  # загадане число
+number_computer: int = 0  # число, яке потрібно відгадати
+n: int = 0  # кіл-ть спроб
 # списки
-n_c = []
-n_b = []
+n_c: list[int] = []
+n_b: list[int] = []
 # генерируємо число, яке необхідно відгадати
 while not is_valid(number_guess):
     number_guess = random.randint(1000, 9999)
@@ -95,14 +95,14 @@ while not is_valid(number_computer):
 # головний цикл, працює, поки не буде 4 бики, тобто два числа не будуть рівні між собою
 
 # отримуємо списки індексів корів та биків
-n_c, n_b = check(number_guess, number_computer)
+n_c: list[str[int]], n_b: list[str[int]]  = check(number_guess, number_computer)
 
 while len(n_b) != 4:
     # перезберемо число з наявних даних
     number_guess = game(number_guess, n_c, n_b)
 
     # отримуємо списки індексів корів та биків
-    n_c, n_b = check(number_guess, number_computer)
+    n_c: list[int], n_b: list[int] = check(number_guess, number_computer)
     n += 1
     print(f"Спроба: {n}; Число: {number_guess}; Число, яке необхідно відгадати: {number_computer}")
 
